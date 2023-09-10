@@ -1,0 +1,53 @@
+Расщепим правые части правил (Оно одно)
+
+StudentId -> StudentName
+GroupId -> GroupName
+CourseId -> CourseName
+LecturerId -> LecturerName
+StudentId, CourseId -> Mark
+StudentId, CourseId -> LecturerId
+StudentId -> GroupId
+
+
+
+
+
+Попробуем удалить лишние аттрибуты из левых частей. Правил кандидатов всего два:
+StudentId, CourseId -> Mark
+Пробуем удалить StudentId. {CourseId}^+ = {CourseId, CourseName} => Не можем удалить.
+Пробуем удалить CourseId. {StudentId}^+ = {StudentId, StudentName, GroupId, GroupName} => Не можем удалить.
+
+StudentId, CourseId -> LecturerId
+Пробуем удалить StudentId. {CourseId}^+ = {CourseId, CourseName} => Не можем удалить.
+Пробуем удалить CourseId. {StudentId}^+ = {StudentId, StudentName, GroupId, GroupName} => Не можем удалить.
+
+StudentId -> StudentName
+GroupId -> GroupName
+CourseId -> CourseName
+LecturerId -> LecturerName
+StudentId, CourseId -> Mark
+StudentId, CourseId -> LecturerId
+StudentId -> GroupId
+
+
+Попробуем удалить каждое правило:
+StudentId -> StudentName
+Замыкание: {StudentId, GroupId, GroupName}. Не можем удалить.
+
+GroupId -> GroupName
+Замыкание: {CourseId}. Не можем удалить.
+
+CourseId -> CourseName
+Замыкание: {CourseId}. Не можем удалить.
+
+LecturerId -> LecturerName
+Замыкание: {LecturerId}. Не можем удалить.
+
+StudentId -> GroupId
+Замыкание: {StudentId, StudentName}. Не можем удалить.
+
+StudentId, CourseId -> Mark
+Замыкание: {StudentId, StudentName, GroupId, GroupName, CourseId, CourseName, LecturerId, LecturerName}. Не можем удалить.
+
+StudentId, CourseId -> LecturerId
+Замыкание: {StudentId, StudentName, GroupId, GroupName, CourseId, CourseName, Mark}. Не можем удалить.

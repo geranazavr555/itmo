@@ -1,0 +1,7 @@
+StudentId, CourseId
+StudentId, StudentName, CourseId
+StudentId, StudentName, CourseId, CourseName
+StudentId, StudentName, GroupId, CourseId, CourseName
+StudentId, StudentName, GroupId, CourseId, CourseName, LecturerId, Mark
+StudentId, StudentName, GroupId, GroupName, CourseId, CourseName, LecturerId, Mark
+StudentId, StudentName, GroupId, GroupName, CourseId, CourseName, LecturerId, LecturerName, Mark

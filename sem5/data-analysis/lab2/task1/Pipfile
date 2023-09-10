@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+nazarov-da-lab2-task1-part1 = "==0.1.3"
+nazarov-da-lab2-task1-part2 = "==0.1.2"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

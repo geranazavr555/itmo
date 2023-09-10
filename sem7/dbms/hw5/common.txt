@@ -1,0 +1,806 @@
+
+
+########################
+section Unary operations
+########################
+
+data Persons
+    Id, LastName   , FirstName
+    1 , 'Иванов'   , 'Иван'   
+    2 , 'Петров'   , 'Петр'   
+    3 , 'Сидоров'  , 'Сидор'  
+    4 , 'Кулебякин', 'Иван'   
+
+print-ra Persons
+    # Id, LastName   , FirstName
+    # 1 , 'Иванов'   , 'Иван'   
+    # 2 , 'Петров'   , 'Петр'   
+    # 3 , 'Сидоров'  , 'Сидор'  
+    # 4 , 'Кулебякин', 'Иван'   
+
+print-ra π{LastName, FirstName}(Persons)
+    # LastName   , FirstName
+    # 'Иванов'   , 'Иван'   
+    # 'Петров'   , 'Петр'   
+    # 'Сидоров'  , 'Сидор'  
+    # 'Кулебякин', 'Иван'   
+
+print-ra π{FirstName}(Persons)
+    # FirstName
+    # 'Иван'   
+    # 'Петр'   
+    # 'Сидор'  
+
+print-ra σ{Id > 2}(Persons)
+    # Id, LastName   , FirstName
+    # 3 , 'Сидоров'  , 'Сидор'  
+    # 4 , 'Кулебякин', 'Иван'   
+
+print-ra σ{¬(Id > 2)}(Persons)
+    # Id, LastName, FirstName
+    # 1 , 'Иванов', 'Иван'   
+    # 2 , 'Петров', 'Петр'   
+
+print-ra σ{Id > 2 ⋀ FirstName = 'Иван'}(Persons)
+    # Id, LastName   , FirstName
+    # 4 , 'Кулебякин', 'Иван'   
+
+print-ra σ{length(FirstName) + 2 ≥ length(LastName)}(Persons)
+    # Id, LastName , FirstName
+    # 1 , 'Иванов' , 'Иван'   
+    # 2 , 'Петров' , 'Петр'   
+    # 3 , 'Сидоров', 'Сидор'  
+
+print-ra ρ{Name=FirstName, Surname=LastName}(Persons)
+    # Id, Surname    , Name   
+    # 1 , 'Иванов'   , 'Иван' 
+    # 2 , 'Петров'   , 'Петр' 
+    # 3 , 'Сидоров'  , 'Сидор'
+    # 4 , 'Кулебякин', 'Иван' 
+
+
+
+######################
+section Set operations
+######################
+
+data R1
+    Id, FirstName
+    1 , 'Иван'   
+    2 , 'Петр'   
+    3 , 'Сидор'  
+
+data R2
+    Id, FirstName
+    1 , 'Иван'   
+    1 , ''       
+    4 , 'Сидор'  
+
+print-ra R1 ⋃ R2
+    # Id, FirstName
+    # 1 , 'Иван'   
+    # 2 , 'Петр'   
+    # 3 , 'Сидор'  
+    # 1 , ''       
+    # 4 , 'Сидор'  
+
+print-ra R1 ⋂ R2
+    # Id, FirstName
+    # 1 , 'Иван'   
+
+print-ra R1 ∖ R2
+    # Id, FirstName
+    # 2 , 'Петр'   
+    # 3 , 'Сидор'  
+
+
+
+#############
+section Joins
+#############
+
+data R1
+    Id, FirstName
+    1 , 'Иван'   
+    2 , 'Петр'   
+    3 , 'Сидор'  
+
+data R2
+    Id, LastName 
+    1 , 'Иванов' 
+    1 , 'Петров' 
+    3 , 'Сидоров'
+    4 , 'Плюшкин'
+
+comment Id attributes are renamed to Id1 and Id2 to match no-same attribute requirement
+
+print-ra ρ{Id1=Id}(R1) × ρ{Id2=Id}(R2)
+    # Id1, FirstName, Id2, LastName 
+    # 1  , 'Иван'   , 1  , 'Иванов' 
+    # 1  , 'Иван'   , 1  , 'Петров' 
+    # 1  , 'Иван'   , 3  , 'Сидоров'
+    # 1  , 'Иван'   , 4  , 'Плюшкин'
+    # 2  , 'Петр'   , 1  , 'Иванов' 
+    # 2  , 'Петр'   , 1  , 'Петров' 
+    # 2  , 'Петр'   , 3  , 'Сидоров'
+    # 2  , 'Петр'   , 4  , 'Плюшкин'
+    # 3  , 'Сидор'  , 1  , 'Иванов' 
+    # 3  , 'Сидор'  , 1  , 'Петров' 
+    # 3  , 'Сидор'  , 3  , 'Сидоров'
+    # 3  , 'Сидор'  , 4  , 'Плюшкин'
+
+print-ra R1 ⋈ R2
+    # Id, FirstName, LastName 
+    # 1 , 'Иван'   , 'Иванов' 
+    # 1 , 'Иван'   , 'Петров' 
+    # 3 , 'Сидор'  , 'Сидоров'
+
+print-ra R1 ⟕ R2
+    # Id, FirstName, LastName 
+    # 1 , 'Иван'   , 'Иванов' 
+    # 1 , 'Иван'   , 'Петров' 
+    # 2 , 'Петр'   , null     
+    # 3 , 'Сидор'  , 'Сидоров'
+
+print-ra R1 ⟖ R2
+    # Id, FirstName, LastName 
+    # 1 , 'Иван'   , 'Иванов' 
+    # 1 , 'Иван'   , 'Петров' 
+    # 3 , 'Сидор'  , 'Сидоров'
+    # 4 , null     , 'Плюшкин'
+
+print-ra R1 ⟗ R2
+    # Id, FirstName, LastName 
+    # 1 , 'Иван'   , 'Иванов' 
+    # 1 , 'Иван'   , 'Петров' 
+    # 2 , 'Петр'   , null     
+    # 3 , 'Сидор'  , 'Сидоров'
+    # 4 , null     , 'Плюшкин'
+
+print-ra R1 ⋉ R2
+    # Id, FirstName
+    # 1 , 'Иван'   
+    # 3 , 'Сидор'  
+
+print-ra R1 ⋊ R2
+    # Id, LastName 
+    # 1 , 'Иванов' 
+    # 1 , 'Петров' 
+    # 3 , 'Сидоров'
+
+
+
+################
+section Division
+################
+
+data R1
+    Id, FirstName
+    1 , 'Иван'   
+    2 , 'Иван'   
+    1 , 'Петр'   
+    2 , 'Петр'   
+    3 , 'Петр'   
+    1 , 'Сидор'  
+    3 , 'Сидор'  
+
+data R2
+    Id
+    1 
+    2 
+
+data R3
+    Id, LastName 
+    1 , 'Иванов' 
+    2 , 'Иванов' 
+    1 , 'Петров' 
+    3 , 'Сидоров'
+
+print-ra R1 ÷ R2
+    # FirstName
+    # 'Иван'   
+    # 'Петр'   
+
+print-ra R1 ⋇ R3
+    # FirstName, LastName 
+    # 'Иван'   , 'Иванов' 
+    # 'Иван'   , 'Петров' 
+    # 'Петр'   , 'Иванов' 
+    # 'Петр'   , 'Петров' 
+    # 'Петр'   , 'Сидоров'
+    # 'Сидор'  , 'Петров' 
+    # 'Сидор'  , 'Сидоров'
+
+set-ra RZ = R1
+    # Id, FirstName
+    # 1 , 'Иван'   
+    # 2 , 'Иван'   
+    # 1 , 'Петр'   
+    # 2 , 'Петр'   
+    # 3 , 'Петр'   
+    # 1 , 'Сидор'  
+    # 3 , 'Сидор'  
+
+print-ra RZ
+    # Id, FirstName
+    # 1 , 'Иван'   
+    # 2 , 'Иван'   
+    # 1 , 'Петр'   
+    # 2 , 'Петр'   
+    # 3 , 'Петр'   
+    # 1 , 'Сидор'  
+    # 3 , 'Сидор'  
+
+print-sql 
+    select firstname from RZ
+    # FirstName
+    # 'Иван'   
+    # 'Иван'   
+    # 'Петр'   
+    # 'Петр'   
+    # 'Петр'   
+    # 'Сидор'  
+    # 'Сидор'  
+
+print-sql 
+    select firstname from RZ where false;
+    # EmptyResult
+
+print-sql 
+    select FirstName, id + 3 from RZ;
+    # FirstName, id + 3
+    # 'Иван'   , 4     
+    # 'Иван'   , 5     
+    # 'Петр'   , 4     
+    # 'Петр'   , 5     
+    # 'Петр'   , 6     
+    # 'Сидор'  , 4     
+    # 'Сидор'  , 6     
+
+
+
+###############
+section set-sql
+###############
+
+set-sql RQ = 
+    select FirstName, id + 3 as id from RZ;
+    # FirstName, id
+    # 'Иван'   , 4 
+    # 'Иван'   , 5 
+    # 'Петр'   , 4 
+    # 'Петр'   , 5 
+    # 'Петр'   , 6 
+    # 'Сидор'  , 4 
+    # 'Сидор'  , 6 
+
+# ERROR: Invalid attribute name id + 3
+set-sql RQ =
+  select FirstName, id + 3 from RZ;
+
+print-sql 
+    delete from RZ;
+    # EmptyResult
+
+set-sql RQ = 
+    select * from RZ;
+    # EmptyResult
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+########################
+section Unary operations
+########################
+
+data Persons
+    Id, LastName   , FirstName
+    1 , 'Иванов'   , 'Иван'   
+    2 , 'Петров'   , 'Петр'   
+    3 , 'Сидоров'  , 'Сидор'  
+    4 , 'Кулебякин', 'Иван'   
+
+print-ra Persons
+    # Id, LastName   , FirstName
+    # 1 , 'Иванов'   , 'Иван'   
+    # 2 , 'Петров'   , 'Петр'   
+    # 3 , 'Сидоров'  , 'Сидор'  
+    # 4 , 'Кулебякин', 'Иван'   
+
+print-ra π{LastName, FirstName}(Persons)
+    # LastName   , FirstName
+    # 'Иванов'   , 'Иван'   
+    # 'Петров'   , 'Петр'   
+    # 'Сидоров'  , 'Сидор'  
+    # 'Кулебякин', 'Иван'   
+
+print-ra π{FirstName}(Persons)
+    # FirstName
+    # 'Иван'   
+    # 'Петр'   
+    # 'Сидор'  
+
+print-ra σ{Id > 2}(Persons)
+    # Id, LastName   , FirstName
+    # 3 , 'Сидоров'  , 'Сидор'  
+    # 4 , 'Кулебякин', 'Иван'   
+
+print-ra σ{¬(Id > 2)}(Persons)
+    # Id, LastName, FirstName
+    # 1 , 'Иванов', 'Иван'   
+    # 2 , 'Петров', 'Петр'   
+
+print-ra σ{Id > 2 ⋀ FirstName = 'Иван'}(Persons)
+    # Id, LastName   , FirstName
+    # 4 , 'Кулебякин', 'Иван'   
+
+print-ra σ{length(FirstName) + 2 ≥ length(LastName)}(Persons)
+    # Id, LastName , FirstName
+    # 1 , 'Иванов' , 'Иван'   
+    # 2 , 'Петров' , 'Петр'   
+    # 3 , 'Сидоров', 'Сидор'  
+
+print-ra ρ{Name=FirstName, Surname=LastName}(Persons)
+    # Id, Surname    , Name   
+    # 1 , 'Иванов'   , 'Иван' 
+    # 2 , 'Петров'   , 'Петр' 
+    # 3 , 'Сидоров'  , 'Сидор'
+    # 4 , 'Кулебякин', 'Иван' 
+
+
+
+######################
+section Set operations
+######################
+
+data R1
+    Id, FirstName
+    1 , 'Иван'   
+    2 , 'Петр'   
+    3 , 'Сидор'  
+
+data R2
+    Id, FirstName
+    1 , 'Иван'   
+    1 , ''       
+    4 , 'Сидор'  
+
+print-ra R1 ⋃ R2
+    # Id, FirstName
+    # 1 , 'Иван'   
+    # 2 , 'Петр'   
+    # 3 , 'Сидор'  
+    # 1 , ''       
+    # 4 , 'Сидор'  
+
+print-ra R1 ⋂ R2
+    # Id, FirstName
+    # 1 , 'Иван'   
+
+print-ra R1 ∖ R2
+    # Id, FirstName
+    # 2 , 'Петр'   
+    # 3 , 'Сидор'  
+
+
+
+#############
+section Joins
+#############
+
+data R1
+    Id, FirstName
+    1 , 'Иван'   
+    2 , 'Петр'   
+    3 , 'Сидор'  
+
+data R2
+    Id, LastName 
+    1 , 'Иванов' 
+    1 , 'Петров' 
+    3 , 'Сидоров'
+    4 , 'Плюшкин'
+
+comment Id attributes are renamed to Id1 and Id2 to match no-same attribute requirement
+
+print-ra ρ{Id1=Id}(R1) × ρ{Id2=Id}(R2)
+    # Id1, FirstName, Id2, LastName 
+    # 1  , 'Иван'   , 1  , 'Иванов' 
+    # 1  , 'Иван'   , 1  , 'Петров' 
+    # 1  , 'Иван'   , 3  , 'Сидоров'
+    # 1  , 'Иван'   , 4  , 'Плюшкин'
+    # 2  , 'Петр'   , 1  , 'Иванов' 
+    # 2  , 'Петр'   , 1  , 'Петров' 
+    # 2  , 'Петр'   , 3  , 'Сидоров'
+    # 2  , 'Петр'   , 4  , 'Плюшкин'
+    # 3  , 'Сидор'  , 1  , 'Иванов' 
+    # 3  , 'Сидор'  , 1  , 'Петров' 
+    # 3  , 'Сидор'  , 3  , 'Сидоров'
+    # 3  , 'Сидор'  , 4  , 'Плюшкин'
+
+print-ra R1 ⋈ R2
+    # Id, FirstName, LastName 
+    # 1 , 'Иван'   , 'Иванов' 
+    # 1 , 'Иван'   , 'Петров' 
+    # 3 , 'Сидор'  , 'Сидоров'
+
+print-ra R1 ⟕ R2
+    # Id, FirstName, LastName 
+    # 1 , 'Иван'   , 'Иванов' 
+    # 1 , 'Иван'   , 'Петров' 
+    # 2 , 'Петр'   , null     
+    # 3 , 'Сидор'  , 'Сидоров'
+
+print-ra R1 ⟖ R2
+    # Id, FirstName, LastName 
+    # 1 , 'Иван'   , 'Иванов' 
+    # 1 , 'Иван'   , 'Петров' 
+    # 3 , 'Сидор'  , 'Сидоров'
+    # 4 , null     , 'Плюшкин'
+
+print-ra R1 ⟗ R2
+    # Id, FirstName, LastName 
+    # 1 , 'Иван'   , 'Иванов' 
+    # 1 , 'Иван'   , 'Петров' 
+    # 2 , 'Петр'   , null     
+    # 3 , 'Сидор'  , 'Сидоров'
+    # 4 , null     , 'Плюшкин'
+
+print-ra R1 ⋉ R2
+    # Id, FirstName
+    # 1 , 'Иван'   
+    # 3 , 'Сидор'  
+
+print-ra R1 ⋊ R2
+    # Id, LastName 
+    # 1 , 'Иванов' 
+    # 1 , 'Петров' 
+    # 3 , 'Сидоров'
+
+
+
+################
+section Division
+################
+
+data R1
+    Id, FirstName
+    1 , 'Иван'   
+    2 , 'Иван'   
+    1 , 'Петр'   
+    2 , 'Петр'   
+    3 , 'Петр'   
+    1 , 'Сидор'  
+    3 , 'Сидор'  
+
+data R2
+    Id
+    1 
+    2 
+
+data R3
+    Id, LastName 
+    1 , 'Иванов' 
+    2 , 'Иванов' 
+    1 , 'Петров' 
+    3 , 'Сидоров'
+
+print-ra R1 ÷ R2
+    # FirstName
+    # 'Иван'   
+    # 'Петр'   
+
+print-ra R1 ⋇ R3
+    # FirstName, LastName 
+    # 'Иван'   , 'Иванов' 
+    # 'Иван'   , 'Петров' 
+    # 'Петр'   , 'Иванов' 
+    # 'Петр'   , 'Петров' 
+    # 'Петр'   , 'Сидоров'
+    # 'Сидор'  , 'Петров' 
+    # 'Сидор'  , 'Сидоров'
+
+set-ra RZ = R1
+    # Id, FirstName
+    # 1 , 'Иван'   
+    # 2 , 'Иван'   
+    # 1 , 'Петр'   
+    # 2 , 'Петр'   
+    # 3 , 'Петр'   
+    # 1 , 'Сидор'  
+    # 3 , 'Сидор'  
+
+print-ra RZ
+    # Id, FirstName
+    # 1 , 'Иван'   
+    # 2 , 'Иван'   
+    # 1 , 'Петр'   
+    # 2 , 'Петр'   
+    # 3 , 'Петр'   
+    # 1 , 'Сидор'  
+    # 3 , 'Сидор'  
+
+print-sql 
+  select firstname from RZ
+    # FirstName
+    # 'Иван'   
+    # 'Иван'   
+    # 'Петр'   
+    # 'Петр'   
+    # 'Петр'   
+    # 'Сидор'  
+    # 'Сидор'  
+
+print-sql 
+  select firstname from RZ where false;
+    # EmptyResult
+
+print-sql 
+  select FirstName, id + 3 from RZ;
+    # FirstName, id + 3
+    # 'Иван'   , 4     
+    # 'Иван'   , 5     
+    # 'Петр'   , 4     
+    # 'Петр'   , 5     
+    # 'Петр'   , 6     
+    # 'Сидор'  , 4     
+    # 'Сидор'  , 6     
+
+
+
+###############
+section set-sql
+###############
+
+set-sql RQ = 
+  select FirstName, id + 3 as id from RZ;
+    # FirstName, id
+    # 'Иван'   , 4 
+    # 'Иван'   , 5 
+    # 'Петр'   , 4 
+    # 'Петр'   , 5 
+    # 'Петр'   , 6 
+    # 'Сидор'  , 4 
+    # 'Сидор'  , 6 
+
+# ERROR: Invalid attribute name id + 3
+set-sql RQ =
+  select FirstName, id + 3 from RZ;
+
+print-sql 
+  delete from RZ;
+    # EmptyResult
+
+set-sql RQ = 
+  select * from RZ;
+    # EmptyResult
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#########################################################
+section Составьте выражения реляционной алгебры и
+        соответствующие SQL-запросы, позволяющие получать
+#########################################################
+
+#####################################
+subsection 01. Информацию о студентах
+
+comment 01.1.  С заданным идентификатором
+               (StudentId, StudentName, GroupId по :StudentId)
+
+set-var :StudentId = 1
+
+
+print-ra 
+
+
+comment 01.2.  С заданным ФИО
+               (StudentId, StudentName, GroupId по :StudentName)
+
+set-var :StudentName = 'Иванов И.И.'
+
+############################################
+subsection 02. Полную информацию о студентах
+
+comment 02.1.  С заданным идентификатором
+               (StudentId, StudentName, GroupName по :StudentId)
+
+set-var :StudentId = 1
+
+comment 02.2.  С заданным ФИО
+               (StudentId, StudentName, GroupName по :StudentName)
+
+set-var :StudentName = 'Иванов И.И.'
+
+######################################################################
+subsection 03. Информацию о студентах с заданной оценкой по дисциплине
+
+comment 03.1.  С заданным идентификатором
+               (StudentId, StudentName, GroupId по :Mark, :CourseId)
+
+set-var :Mark = 5
+
+set-var :CourseId = 1
+
+comment 03.2.  С заданным названием
+               (StudentId, StudentName, GroupId по :Mark, :CourseName)
+
+set-var :Mark = 5
+
+set-var :CourseName = 'Базы данных'
+
+comment 03.3.  Которую у него вёл лектор заданный идентификатором
+               (StudentId, StudentName, GroupId по :Mark, :LecturerId)
+
+set-var :Mark = 5
+
+set-var :LecturerId = 1
+
+comment 03.4.  Которую у него вёл лектор, заданный ФИО
+               (StudentId, StudentName, GroupId по :Mark, :LecturerName)
+
+set-var :Mark = 5
+
+set-var :LecturerName = 'Корнеев Г.А.'
+
+comment 03.5.  Которую вёл лектор, заданный идентификатором
+               (StudentId, StudentName, GroupId по :Mark, :LecturerId)
+
+set-var :Mark = 5
+
+set-var :LecturerId = 1
+
+comment 03.6.  Которую вёл лектор, заданный ФИО
+               (StudentId, StudentName, GroupId по :Mark, :LecturerName)
+
+set-var :Mark = 5
+
+set-var :LecturerName = 'Корнеев Г.А.'
+
+#####################################################################
+subsection 04. Информацию о студентах не имеющих оценки по дисциплине
+
+comment 04.1.  Среди всех студентов
+               (StudentId, StudentName, GroupId по :CourseName)
+
+set-var :CourseName = 'Базы данных'
+
+comment 04.2.  Среди студентов, у которых есть эта дисциплина
+               (StudentId, StudentName, GroupId по :CourseName)
+
+set-var :CourseName = 'Базы данных'
+
+############################################################
+subsection 05. Для каждого студента ФИО и названия дисциплин
+
+comment 05.1.  Которые у него есть по плану
+               (StudentName, CourseName)
+
+comment 05.2.  Есть, но у него нет оценки
+               (StudentName, CourseName)
+
+comment 05.3.  Есть, но у него не 4 или 5
+               (StudentName, CourseName)
+
+########################################################
+subsection 06. Идентификаторы студентов по преподавателю
+
+comment 06.1.  Имеющих хотя бы одну оценку у преподавателя
+               (StudentId по :LecturerName)
+
+set-var :LecturerName = 'Корнеев Г.А.'
+
+comment 06.2.  Не имеющих ни одной оценки у преподавателя
+               (StudentId по :LecturerName)
+
+set-var :LecturerName = 'Корнеев Г.А.'
+
+comment 06.3.  Имеющих оценки по всем дисциплинам преподавателя
+               (StudentId по :LecturerName)
+
+set-var :LecturerName = 'Корнеев Г.А.'
+
+comment 06.4.  Имеющих оценки по всем дисциплинам преподавателя,
+               которые он вёл у этого студента
+               (StudentId по :LecturerName)
+
+set-var :LecturerName = 'Корнеев Г.А.'
+
+######################################################################################
+subsection 07. Группы и дисциплины, такие что все студенты группы сдали эту дисциплину
+
+comment 07.1.  Идентификаторы
+               (GroupId, CourseId)
+
+comment 07.2.  Названия
+               (GroupName, CourseName)
+
+###################################################
+section Составьте SQL-запросы, позволяющие получать
+###################################################
+
+#############################
+subsection 08. Суммарный балл
+
+comment 08.1.  Одного студента
+               (SumMark по :StudentId)
+
+set-var :StudentId = 1
+
+comment 08.2.  Каждого студента
+               (StudentName, SumMark)
+
+comment 08.3.  Каждой группы
+               (GroupName, SumMark)
+
+###########################
+subsection 09. Средний балл
+
+comment 09.1.  Одного студента
+               (AvgMark по :StudentId)
+
+set-var :StudentId = 1
+
+comment 09.2.  Каждого студента
+               (StudentName, AvgMark)
+
+comment 09.3.  Каждой группы
+               (GroupName, AvgMark)
+
+comment 09.4.  Средний балл средних баллов студентов каждой группы
+               (GroupName, AvgAvgMark)
+
+comment 10.  Для каждого студента:
+             число дисциплин, которые у него были,
+             число сданных дисциплин и
+             число несданных дисциплин
+             (StudentId, Total, Passed, Failed)

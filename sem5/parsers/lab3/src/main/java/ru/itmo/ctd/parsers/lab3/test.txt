@@ -1,0 +1,5 @@
+let x: int
+
+def main(): int {
+    x = 5
+}

@@ -1,0 +1,13 @@
+p{StudentId, StudentName, GroupId}(
+	Students
+	diff
+	p{StudentId, StudentName, GroupId}(
+		Students
+		nj
+		(
+			Marks
+			nj
+			s{CourseName = :CourseName}(Courses)
+		)
+	)
+)

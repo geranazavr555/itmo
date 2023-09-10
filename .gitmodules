@@ -1,0 +1,31 @@
+[submodule "sem5/functional-programming/hi"]
+	path = sem5/functional-programming/hi
+	url = git@github.com:geranazavr555/hi.git
+[submodule "sem7/parallel-algos/cw1"]
+	path = sem7/parallel-algos/cw1
+	url = git@github.com:geranazavr555/cw1.git
+[submodule "sem7/parallel-algos/cw2"]
+	path = sem7/parallel-algos/cw2
+	url = git@github.com:geranazavr555/cw2.git
+[submodule "sem7/software-design/sd-hw3"]
+	path = sem7/software-design/sd-hw3
+	url = git@github.com:geranazavr555/sd-hw3.git
+[submodule "sem7/software-design/sd-hw2"]
+	path = sem7/software-design/sd-hw2
+	url = git@github.com:geranazavr555/sd-hw2.git
+[submodule "sem7/software-design/sd-hw5"]
+	path = sem7/software-design/sd-hw5
+	url = git@github.com:geranazavr555/sd-hw5.git
+[submodule "sem7/software-design/sd-hw6"]
+	path = sem7/software-design/sd-hw6
+	url = git@github.com:geranazavr555/sd-hw6.git
+[submodule "sem7/software-design/sd-hw8"]
+	path = sem7/software-design/sd-hw8
+	url = git@github.com:geranazavr555/sd-hw8.git
+[submodule "sem7/software-design/lru-cache"]
+	path = sem7/software-design/lru-cache
+	url = git@github.com:geranazavr555/lru-cache.git
+
+[submodule "sem8/software-design/sdcourse-hw12"]
+	path = sem8/software-design/sdcourse-hw12
+	url = git@github.com:geranazavr555/sdcourse-hw12.git

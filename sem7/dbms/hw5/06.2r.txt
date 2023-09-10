@@ -1,0 +1,11 @@
+p{StudentId}(Students)
+diff
+p{StudentId}(
+	s{LecturerName = :LecturerName}(Lecturers)
+	nj
+	Plan
+	nj
+	Marks
+	nj
+	Students
+)

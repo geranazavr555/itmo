@@ -1,0 +1,177 @@
+1 НФ -- уже
+
+(StudentId, StudentName, GroupId, GroupName, CourseId, CourseName, LecturerId, LecturerName, Mark) => (StudentId, StudentName, GroupId, GroupName, CourseId, CourseName, LecturerId, LecturerName, Mark).
+
+2 НФ
+
+(StudentId, StudentName, GroupId, GroupName, CourseId, CourseName, LecturerId, LecturerName, Mark) => 
+	(!StudentId, StudentName, GroupId, GroupName, !CourseId, CourseName, LecturerId, LecturerName, Mark) 
+	(!StudentId StudentName) (!StudentId, GroupId, GroupName, !CourseId, CourseName, LecturerId, LecturerName, Mark)
+	(!StudentId StudentName) (!CourseId CourseName) (!StudentId, GroupId, GroupName, !CourseId, LecturerId, LecturerName, Mark)
+	(!StudentId StudentName) (!CourseId CourseName) (!GroupId !CourseId LecturerId LecturerName) (!StudentId GroupId GroupName !CourseId Mark)
+
+	(!StudentId StudentName) (!CourseId CourseName) (!GroupId !CourseId LecturerId LecturerName) (!StudentId GroupId GroupName) (!StudentId !CourseId Mark)
+		
+
+3 НФ
+	(!StudentId StudentName) (!CourseId CourseName) (!GroupId !CourseId LecturerId LecturerName) (!StudentId GroupId) (!GroupId, GroupName) 
+	(!StudentId !CourseId Mark)
+
+	(!StudentId StudentName) (!CourseId CourseName) (!GroupId !CourseId LecturerId) (!LecturerId LecturerName) (!StudentId GroupId) (!GroupId, GroupName) 
+	(!StudentId !CourseId Mark)
+
+
+/**
+
+	(StudentId, StudentName); (StudentId, GroupId, GroupName, CourseId, CourseName, LecturerId, LecturerName, Mark). =>
+	(!StudentId, StudentName) (!GroupId !GroupName) (!StudentId, GroupId, !CourseId, CourseName, LecturerId, LecturerName, Mark)
+	(!StudentId, StudentName) (!GroupId !GroupName) (!CourseId CourseName) (!StudentId, GroupId, !CourseId, LecturerId, LecturerName, Mark)
+	(!StudentId, StudentName) (!GroupId !GroupName) (!CourseId CourseName) (!StudentId, GroupId, !CourseId, LecturerId, LecturerName, Mark)
+	(!StudentId, StudentName) (!GroupId !GroupName) (!CourseId CourseName) (!StudentId, GroupId, !CourseId, LecturerId, LecturerName, Mark)
+
+
+	(!StudentId, StudentName) (!GroupId !GroupName) (!CourseId CourseName) (!LecturerId, LecturerName) (StudentId, GroupId, CourseId, LecturerId, Mark)
+
+	(!StudentId, StudentName) (!GroupId !GroupName) (!CourseId CourseName) (!LecturerId, LecturerName) (!GroupId !CourseId LecturerId)
+	(StudentId, GroupId, CourseId, Mark)
+
+	(!StudentId, StudentName) (!GroupId !GroupName) (!CourseId CourseName) (!LecturerId, LecturerName) (!GroupId !CourseId LecturerId)
+	(!StudentId !CourseId Mark) (!StudentId GroupId)
+**/
+
+
+3 НФ +
+
+НФБК +
+
+(!StudentId, StudentName) 5НФ по Т Д-Ф 1
+(!GroupId !GroupName) 5НФ по Т Д-Ф 1
+(!CourseId CourseName) 5НФ по Т Д-Ф 1
+(!LecturerId, LecturerName) 5НФ по Т Д-Ф 1
+(!StudentId GroupId) 5НФ по Т Д-Ф 1
+
+Найдем МЗ в (!GroupId !CourseId LecturerId)
+
+Возможные нетривиальные МЗ:
+CourseId ->> GroupId | LecturerId
+GroupId ->> CourseId | LecturerId
+LecturerId ->> GroupId | CourseId
+<empty> ->> CourseId GroupId | LecturerId
+<empty> ->> CourseId LecturerId | GroupId
+<empty> ->> GroupId LecturerId | CourseId
+
+Контрпример к CourseId ->> GroupId | LecturerId:
+Один курс может читаться у разных групп разными лекторами
+CourseId GroupId LecturerId
+1 2 2
+1 1 1
+
+Контрпример к GroupId ->> CourseId | LecturerId
+Одна группа может слушать разные курсы у разных лекторов
+CourseId GroupId LecturerId
+1 1 1
+2 1 2
+
+Контрпример к LecturerId ->> GroupId | CourseId:
+Один лектор может читать у разных групп разные курсы
+CourseId GroupId LecturerId
+1 1 1
+2 2 1
+
+Контрпример ко всем МЗ с <empty> в левой части:
+CourseId GroupId LecturerId
+1 1 1
+2 2 2
+
+Итого, нетривиальных МЗ нет => 4НФ
+
+Найдем МЗ в (!StudentId !CourseId Mark)
+
+Возможные нетривиальные МЗ:
+CourseId ->> StudentId | Mark
+StudentId ->> CourseId | Mark
+Mark ->> StudentId | CourseId
+<empty> ->> CourseId StudentId | Mark
+<empty> ->> CourseId Mark | StudentId
+<empty> ->> StudentId Mark | CourseId
+
+Контрпример к CourseId ->> StudentId | Mark:
+У разных студентов может быть разная оценка за курс
+CourseId StudentId Mark
+1 2 2
+1 1 1
+
+Контрпример к StudentId ->> CourseId | Mark
+Студент может иметь разные оценки за разные курсы
+CourseId StudentId Mark
+1 1 1
+2 1 2
+
+Контрпример к Mark ->> StudentId | CourseId:
+Одну и ту же оценку могут получить разные студенты за разные курсы
+CourseId StudentId Mark
+1 1 1
+2 2 1
+
+Контрпример ко всем МЗ с <empty> в левой части:
+CourseId StudentId Mark
+1 1 1
+2 2 2
+
+Итого, нетривиальных МЗ нет => 4НФ
+
+
+
+5НФ
+
+1. Если в ЗС содержится все отношение, то такая ЗС тривиальна, можно не рассматривать.
+2. Нет смысла рассматривать ЗС, где один элемент Xi подмножество другого Xj, так как тогда Xi можно выкинуть и получить эквивалентрую ЗС
+3. Так, получили, что для отношений из трех атрибутов ABC имеет смысл рассматривать только *{AB, BC, AC} или *{A, B, C}. *{A, B, C} рассматривать смысла не имеет, так как их джойн будет иметь 0 строк, а в реальном мире (в нашем случае) R(ABC) не пусто.
+
+Покажем, что (!GroupId !CourseId LecturerId) в 5НФ. Рассмотрим потенциальную ЗС:
+*{(!GroupId !CourseId)  (!CourseId LecturerId) (LecturerId !GroupId)}
+
+GroupId CourseId LecturerId
+1 1 1
+1 2 2
+
+Проекции:
+GroupId CourseId
+1 1
+1 2
+
+CourseId LecturerId 
+1 1
+2 2
+
+LecturerId GroupId
+1 1
+2 1
+
+
+В объединении будет присутствовать запись (1 1 2), которой не было в исходном отношении. То есть *{(!GroupId !CourseId)  (!CourseId LecturerId) (LecturerId !GroupId)} не выполняется
+
+
+
+Покажем, что (!StudentId !CourseId Mark) в 5НФ. Рассмотрим потенциальную ЗС:
+*{(!StudentId !CourseId)  (!CourseId Mark) (Mark !StudentId)}
+
+StudentId CourseId Mark
+1 1 1
+1 2 2
+
+Проекции:
+StudentId CourseId
+1 1
+1 2
+
+CourseId Mark 
+1 1
+2 2
+
+Mark StudentId
+1 1
+2 1
+
+
+В объединении будет присутствовать запись (1 1 2), которой не было в исходном отношении. То есть *{(!StudentId !CourseId)  (!CourseId Mark) (Mark !StudentId)} не выполняется

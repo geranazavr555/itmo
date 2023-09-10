@@ -1,0 +1,3 @@
+p{StudentId, StudentName, GroupId}(
+	s{StudentName = :StudentName}(Students)
+)

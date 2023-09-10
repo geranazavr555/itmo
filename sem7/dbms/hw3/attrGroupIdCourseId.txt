@@ -1,0 +1,3 @@
+GroupId, CourseId
+GroupId, GroupName, CourseId
+GroupId, GroupName, CourseId, CourseName

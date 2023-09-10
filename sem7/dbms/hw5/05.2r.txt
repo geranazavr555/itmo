@@ -1,0 +1,19 @@
+p{StudentName, CourseName}(
+    (
+        Students
+        nj
+        Plan
+        nj
+        Courses
+    )
+    diff
+    p{StudentId, StudentName, GroupId, CourseId, LecturerId, CourseName}(
+        Students
+        nj
+        Plan
+        nj
+        Courses
+        nj
+        Marks
+    )
+)

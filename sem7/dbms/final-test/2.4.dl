@@ -1,0 +1,6 @@
+
+
+Result(ContestId, Letter) :-
+	Sessions(SessionId, _, ContestId, _),
+	not Runs(_, SessionId, Letter, _, 1),
+	Problems(ContestId, Letter, _).

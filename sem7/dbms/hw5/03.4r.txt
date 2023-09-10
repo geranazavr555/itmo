@@ -1,0 +1,11 @@
+p{StudentId, StudentName, GroupId}(
+	Students
+	nj
+	s{Mark = :Mark}(Marks)
+	nj
+	(
+		Plan
+		nj
+		s{LecturerName = :LecturerName}(Lecturers)
+	)
+)

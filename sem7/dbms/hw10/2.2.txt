@@ -1,0 +1,11 @@
+По пунктам из сценария:
+
+1. SET @FlightId = <input>
+2. Если SQLSTATE не ок, goto 1
+3. action = <input>
+4. if action != "купить": SET @Pass = <input>
+5. if action == "выкупить бронь", print результат запроса на брони else goto 8.
+6. SET @SeatNo = <input>.
+7. Исполняем запрос на выкуп брони. if not @Success - goto 3. If @Success - конец сценария.
+8. print результат запроса свободных мест, SET @SeatNo = <input>
+9. Исполняем зарпос на покупку билета или на бронь. if not @Success - goto 8. If @Success - конец сценария.

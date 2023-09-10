@@ -1,0 +1,21 @@
+.invalid-feedback {
+    display: block !important;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+div.row {
+    margin-top: 1rem !important;
+}
+
+/*.deleteEditButtons button {*/
+/*    margin-left: 1rem;*/
+/*}*/
+
+.deleteEditButtons {
+    float: right;
+    display: inline;
+}

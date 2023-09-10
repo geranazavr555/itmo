@@ -1,0 +1,337 @@
+C:\Users\georgiy\.jdks\openjdk-15.0.2\bin\java.exe -javaagent:C:\Users\georgiy\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\212.5080.55\lib\idea_rt.jar=53609:C:\Users\georgiy\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\212.5080.55\bin -Dfile.encoding=UTF-8 -classpath C:\Programing\sem5\mpp\stack-elimination-geranazavr555\target\classes;C:\Users\georgiy\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.4.0\kotlin-stdlib-1.4.0.jar;C:\Users\georgiy\.m2\repository\org\jetbrains\annotations\13.0\annotations-13.0.jar;C:\Users\georgiy\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-common\1.4.0\kotlin-stdlib-common-1.4.0.jar;C:\Users\georgiy\.m2\repository\org\openjdk\jmh\jmh-core\1.21\jmh-core-1.21.jar;C:\Users\georgiy\.m2\repository\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;C:\Users\georgiy\.m2\repository\org\apache\commons\commons-math3\3.2\commons-math3-3.2.jar;C:\Users\georgiy\.m2\repository\org\openjdk\jmh\jmh-generator-annprocess\1.21\jmh-generator-annprocess-1.21.jar;C:\Users\georgiy\.m2\repository\org\jetbrains\kotlinx\atomicfu\0.14.4\atomicfu-0.14.4.jar stack.StackBenchmark
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.openjdk.jmh.util.Utils (file:/C:/Users/georgiy/.m2/repository/org/openjdk/jmh/jmh-core/1.21/jmh-core-1.21.jar) to field java.io.PrintStream.charOut
+WARNING: Please consider reporting this to the maintainers of org.openjdk.jmh.util.Utils
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+# JMH version: 1.21
+# VM version: JDK 15.0.2, OpenJDK 64-Bit Server VM, 15.0.2+7-27
+# VM invoker: C:\Users\georgiy\.jdks\openjdk-15.0.2\bin\java.exe
+# VM options: -javaagent:C:\Users\georgiy\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\212.5080.55\lib\idea_rt.jar=53609:C:\Users\georgiy\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\212.5080.55\bin -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads (2 groups; 1x "pop", 1x "push" in each group), will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: stack.StackBenchmark.stack
+# Parameters: (work = 1)
+
+# Run progress: 0,00% complete, ETA 00:01:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 306,327 ±(99.9%) 1728,784 ns/op
+# Warmup Iteration   2: 372,083 ±(99.9%) 1940,942 ns/op
+# Warmup Iteration   3: 410,094 ±(99.9%) 1877,819 ns/op
+# Warmup Iteration   4: 383,402 ±(99.9%) 2085,999 ns/op
+# Warmup Iteration   5: 421,855 ±(99.9%) 1960,575 ns/op
+Iteration   1: 421,739 ±(99.9%) 1990,945 ns/op
+                 pop:  154,923 ns/op
+                 push: 688,556 ns/op
+
+Iteration   2: 424,564 ±(99.9%) 1999,515 ns/op
+                 pop:  156,736 ns/op
+                 push: 692,393 ns/op
+
+Iteration   3: 425,559 ±(99.9%) 1965,868 ns/op
+                 pop:  162,143 ns/op
+                 push: 688,975 ns/op
+
+Iteration   4: 429,304 ±(99.9%) 1976,130 ns/op
+                 pop:  164,543 ns/op
+                 push: 694,065 ns/op
+
+Iteration   5: 425,440 ±(99.9%) 1984,383 ns/op
+                 pop:  159,577 ns/op
+                 push: 691,304 ns/op
+
+Iteration   6: 426,189 ±(99.9%) 1997,295 ns/op
+                 pop:  158,544 ns/op
+                 push: 693,835 ns/op
+
+Iteration   7: 428,171 ±(99.9%) 1954,315 ns/op
+                 pop:  166,296 ns/op
+                 push: 690,047 ns/op
+
+Iteration   8: 420,395 ±(99.9%) 1992,103 ns/op
+                 pop:  153,513 ns/op
+                 push: 687,276 ns/op
+
+Iteration   9: 416,768 ±(99.9%) 1981,457 ns/op
+                 pop:  151,816 ns/op
+                 push: 681,720 ns/op
+
+Iteration  10: 425,406 ±(99.9%) 1964,018 ns/op
+                 pop:  162,295 ns/op
+                 push: 688,517 ns/op
+
+
+
+Result "stack.StackBenchmark.stack":
+  424,354 ±(99.9%) 5,663 ns/op [Average]
+  (min, avg, max) = (416,768, 424,354, 429,304), stdev = 3,746
+  CI (99.9%): [418,690, 430,017] (assumes normal distribution)
+
+Secondary result "stack.StackBenchmark.stack:pop":
+  159,039 ±(99.9%) 7,280 ns/op [Average]
+  (min, avg, max) = (151,816, 159,039, 166,296), stdev = 4,815
+  CI (99.9%): [151,758, 166,319] (assumes normal distribution)
+
+Secondary result "stack.StackBenchmark.stack:push":
+  689,669 ±(99.9%) 5,495 ns/op [Average]
+  (min, avg, max) = (681,720, 689,669, 694,065), stdev = 3,634
+  CI (99.9%): [684,174, 695,163] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 15.0.2, OpenJDK 64-Bit Server VM, 15.0.2+7-27
+# VM invoker: C:\Users\georgiy\.jdks\openjdk-15.0.2\bin\java.exe
+# VM options: -javaagent:C:\Users\georgiy\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\212.5080.55\lib\idea_rt.jar=53609:C:\Users\georgiy\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\212.5080.55\bin -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads (2 groups; 1x "pop", 1x "push" in each group), will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: stack.StackBenchmark.stack
+# Parameters: (work = 10)
+
+# Run progress: 25,00% complete, ETA 00:00:50
+# Fork: 1 of 1
+# Warmup Iteration   1: 380,727 ±(99.9%) 1176,229 ns/op
+# Warmup Iteration   2: 373,111 ±(99.9%) 1175,326 ns/op
+# Warmup Iteration   3: 390,054 ±(99.9%) 1107,327 ns/op
+# Warmup Iteration   4: 393,984 ±(99.9%) 1079,582 ns/op
+# Warmup Iteration   5: 379,047 ±(99.9%) 1212,566 ns/op
+Iteration   1: 384,385 ±(99.9%) 1153,602 ns/op
+                 pop:  229,796 ns/op
+                 push: 538,975 ns/op
+
+Iteration   2: 370,809 ±(99.9%) 1155,417 ns/op
+                 pop:  216,236 ns/op
+                 push: 525,382 ns/op
+
+Iteration   3: 382,515 ±(99.9%) 1151,308 ns/op
+                 pop:  228,569 ns/op
+                 push: 536,461 ns/op
+
+Iteration   4: 382,470 ±(99.9%) 1166,615 ns/op
+                 pop:  226,210 ns/op
+                 push: 538,731 ns/op
+
+Iteration   5: 380,690 ±(99.9%) 1145,432 ns/op
+                 pop:  227,309 ns/op
+                 push: 534,072 ns/op
+
+Iteration   6: 390,756 ±(99.9%) 1066,378 ns/op
+                 pop:  247,856 ns/op
+                 push: 533,657 ns/op
+
+Iteration   7: 390,752 ±(99.9%) 1110,604 ns/op
+                 pop:  243,738 ns/op
+                 push: 537,766 ns/op
+
+Iteration   8: 377,240 ±(99.9%) 1209,682 ns/op
+                 pop:  215,386 ns/op
+                 push: 539,094 ns/op
+
+Iteration   9: 381,420 ±(99.9%) 1180,744 ns/op
+                 pop:  223,366 ns/op
+                 push: 539,474 ns/op
+
+Iteration  10: 394,777 ±(99.9%) 1141,190 ns/op
+                 pop:  241,874 ns/op
+                 push: 547,680 ns/op
+
+
+
+Result "stack.StackBenchmark.stack":
+  383,582 ±(99.9%) 10,662 ns/op [Average]
+  (min, avg, max) = (370,809, 383,582, 394,777), stdev = 7,052
+  CI (99.9%): [372,919, 394,244] (assumes normal distribution)
+
+Secondary result "stack.StackBenchmark.stack:pop":
+  230,034 ±(99.9%) 16,860 ns/op [Average]
+  (min, avg, max) = (215,386, 230,034, 247,856), stdev = 11,152
+  CI (99.9%): [213,174, 246,894] (assumes normal distribution)
+
+Secondary result "stack.StackBenchmark.stack:push":
+  537,129 ±(99.9%) 8,536 ns/op [Average]
+  (min, avg, max) = (525,382, 537,129, 547,680), stdev = 5,646
+  CI (99.9%): [528,593, 545,665] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 15.0.2, OpenJDK 64-Bit Server VM, 15.0.2+7-27
+# VM invoker: C:\Users\georgiy\.jdks\openjdk-15.0.2\bin\java.exe
+# VM options: -javaagent:C:\Users\georgiy\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\212.5080.55\lib\idea_rt.jar=53609:C:\Users\georgiy\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\212.5080.55\bin -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads (2 groups; 1x "pop", 1x "push" in each group), will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: stack.StackBenchmark.stack
+# Parameters: (work = 50)
+
+# Run progress: 50,00% complete, ETA 00:00:33
+# Fork: 1 of 1
+# Warmup Iteration   1: 444,114 ±(99.9%) 868,403 ns/op
+# Warmup Iteration   2: 455,546 ±(99.9%) 742,178 ns/op
+# Warmup Iteration   3: 432,935 ±(99.9%) 965,382 ns/op
+# Warmup Iteration   4: 441,521 ±(99.9%) 969,000 ns/op
+# Warmup Iteration   5: 441,315 ±(99.9%) 985,295 ns/op
+Iteration   1: 443,723 ±(99.9%) 950,102 ns/op
+                 pop:  316,782 ns/op
+                 push: 570,663 ns/op
+
+Iteration   2: 445,276 ±(99.9%) 973,448 ns/op
+                 pop:  315,179 ns/op
+                 push: 575,373 ns/op
+
+Iteration   3: 439,150 ±(99.9%) 915,845 ns/op
+                 pop:  317,041 ns/op
+                 push: 561,259 ns/op
+
+Iteration   4: 439,316 ±(99.9%) 897,608 ns/op
+                 pop:  319,210 ns/op
+                 push: 559,423 ns/op
+
+Iteration   5: 451,862 ±(99.9%) 891,061 ns/op
+                 pop:  332,886 ns/op
+                 push: 570,839 ns/op
+
+Iteration   6: 464,790 ±(99.9%) 808,375 ns/op
+                 pop:  356,757 ns/op
+                 push: 572,823 ns/op
+
+Iteration   7: 455,143 ±(99.9%) 794,188 ns/op
+                 pop:  349,096 ns/op
+                 push: 561,189 ns/op
+
+Iteration   8: 456,205 ±(99.9%) 835,706 ns/op
+                 pop:  346,295 ns/op
+                 push: 566,114 ns/op
+
+Iteration   9: 447,154 ±(99.9%) 930,640 ns/op
+                 pop:  322,576 ns/op
+                 push: 571,731 ns/op
+
+Iteration  10: 451,001 ±(99.9%) 923,497 ns/op
+                 pop:  327,818 ns/op
+                 push: 574,183 ns/op
+
+
+
+Result "stack.StackBenchmark.stack":
+  449,362 ±(99.9%) 12,197 ns/op [Average]
+  (min, avg, max) = (439,150, 449,362, 464,790), stdev = 8,068
+  CI (99.9%): [437,165, 461,559] (assumes normal distribution)
+
+Secondary result "stack.StackBenchmark.stack:pop":
+  330,364 ±(99.9%) 23,049 ns/op [Average]
+  (min, avg, max) = (315,179, 330,364, 356,757), stdev = 15,245
+  CI (99.9%): [307,316, 353,413] (assumes normal distribution)
+
+Secondary result "stack.StackBenchmark.stack:push":
+  568,360 ±(99.9%) 8,910 ns/op [Average]
+  (min, avg, max) = (559,423, 568,360, 575,373), stdev = 5,893
+  CI (99.9%): [559,450, 577,270] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 15.0.2, OpenJDK 64-Bit Server VM, 15.0.2+7-27
+# VM invoker: C:\Users\georgiy\.jdks\openjdk-15.0.2\bin\java.exe
+# VM options: -javaagent:C:\Users\georgiy\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\212.5080.55\lib\idea_rt.jar=53609:C:\Users\georgiy\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\212.5080.55\bin -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads (2 groups; 1x "pop", 1x "push" in each group), will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: stack.StackBenchmark.stack
+# Parameters: (work = 100)
+
+# Run progress: 75,00% complete, ETA 00:00:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 467,384 ±(99.9%) 354,354 ns/op
+# Warmup Iteration   2: 459,655 ±(99.9%) 331,725 ns/op
+# Warmup Iteration   3: 464,063 ±(99.9%) 276,343 ns/op
+# Warmup Iteration   4: 476,464 ±(99.9%) 227,110 ns/op
+# Warmup Iteration   5: 468,278 ±(99.9%) 223,363 ns/op
+Iteration   1: 459,747 ±(99.9%) 282,179 ns/op
+                 pop:  422,126 ns/op
+                 push: 497,368 ns/op
+
+Iteration   2: 461,455 ±(99.9%) 311,953 ns/op
+                 pop:  419,807 ns/op
+                 push: 503,104 ns/op
+
+Iteration   3: 471,425 ±(99.9%) 238,863 ns/op
+                 pop:  439,958 ns/op
+                 push: 502,893 ns/op
+
+Iteration   4: 468,711 ±(99.9%) 274,845 ns/op
+                 pop:  432,394 ns/op
+                 push: 505,029 ns/op
+
+Iteration   5: 477,738 ±(99.9%) 255,289 ns/op
+                 pop:  444,209 ns/op
+                 push: 511,266 ns/op
+
+Iteration   6: 478,561 ±(99.9%) 167,706 ns/op
+                 pop:  456,680 ns/op
+                 push: 500,442 ns/op
+
+Iteration   7: 455,381 ±(99.9%) 319,837 ns/op
+                 pop:  412,530 ns/op
+                 push: 498,231 ns/op
+
+Iteration   8: 465,192 ±(99.9%) 372,096 ns/op
+                 pop:  417,916 ns/op
+                 push: 512,468 ns/op
+
+Iteration   9: 471,771 ±(99.9%) 241,965 ns/op
+                 pop:  439,350 ns/op
+                 push: 504,193 ns/op
+
+Iteration  10: 474,057 ±(99.9%) 250,297 ns/op
+                 pop:  440,562 ns/op
+                 push: 507,552 ns/op
+
+
+
+Result "stack.StackBenchmark.stack":
+  468,404 ±(99.9%) 11,775 ns/op [Average]
+  (min, avg, max) = (455,381, 468,404, 478,561), stdev = 7,789
+  CI (99.9%): [456,629, 480,179] (assumes normal distribution)
+
+Secondary result "stack.StackBenchmark.stack:pop":
+  432,553 ±(99.9%) 21,199 ns/op [Average]
+  (min, avg, max) = (412,530, 432,553, 456,680), stdev = 14,022
+  CI (99.9%): [411,354, 453,752] (assumes normal distribution)
+
+Secondary result "stack.StackBenchmark.stack:push":
+  504,255 ±(99.9%) 7,635 ns/op [Average]
+  (min, avg, max) = (497,368, 504,255, 512,468), stdev = 5,050
+  CI (99.9%): [496,620, 511,889] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:01:05
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                  (work)  Mode  Cnt    Score    Error  Units
+StackBenchmark.stack            1  avgt   10  424,354 ±  5,663  ns/op
+StackBenchmark.stack:pop        1  avgt   10  159,039 ±  7,280  ns/op
+StackBenchmark.stack:push       1  avgt   10  689,669 ±  5,495  ns/op
+StackBenchmark.stack           10  avgt   10  383,582 ± 10,662  ns/op
+StackBenchmark.stack:pop       10  avgt   10  230,034 ± 16,860  ns/op
+StackBenchmark.stack:push      10  avgt   10  537,129 ±  8,536  ns/op
+StackBenchmark.stack           50  avgt   10  449,362 ± 12,197  ns/op
+StackBenchmark.stack:pop       50  avgt   10  330,364 ± 23,049  ns/op
+StackBenchmark.stack:push      50  avgt   10  568,360 ±  8,910  ns/op
+StackBenchmark.stack          100  avgt   10  468,404 ± 11,775  ns/op
+StackBenchmark.stack:pop      100  avgt   10  432,553 ± 21,199  ns/op
+StackBenchmark.stack:push     100  avgt   10  504,255 ±  7,635  ns/op
+
+Process finished with exit code 0

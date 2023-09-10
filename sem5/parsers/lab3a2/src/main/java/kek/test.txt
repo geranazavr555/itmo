@@ -1,0 +1,19 @@
+let x: int
+
+def kek(): bool defer
+
+def main(): int {
+    x = 7
+    if kek() {
+        return x
+    }
+    else {
+        while true {
+            5
+        }
+    }
+}
+
+def kek(): bool {
+    return true
+}

@@ -1,0 +1,18 @@
+StudentId, CourseId
+
+Нарисовал некое подобие схемы
+StudentId -> StudentName
+↓
+GroupId -> GroupName
+
+CourseId -> CourseName
+
+LecturerId -> LecturerName
+
+При этом, знаем, что StudentId, CourseId -> LecturerId, Mark
+
+Так, получилась гипотеза, что {StudentId, CourseId} -- надключ.
+
+Проверим по алгоритму с 29 слайда -- в замыкании есть все аттрибуты, ок, перед нами надключ.
+
+Попробуем выкинуть StudentId -- не можем, так как не сможем вывести StudentId. Аналогично с CourseId. Получаем, что StudentId и CourseId должны быть во всех ключах. Итого, {StudentId, CourseId} -- единственный ключ.

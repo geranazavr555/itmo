@@ -1,0 +1,6 @@
+[#ftl]
+[#-- @implicitly included --]
+[#-- @ftlvariable name="currentUser" type="ru.itmo.sdcourse.hw4.model.User" --]
+[#-- @ftlvariable name="message" type="java.lang.String" --]
+[#-- @ftlvariable name="messageLevel" type="java.lang.String" --]
+[#-- @ftlvariable name="pageTitle" type="java.lang.String" --]

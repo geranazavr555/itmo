@@ -1,0 +1,11 @@
+data:
+  google:
+    path: "data/Google_Historical_StockPrice2.csv"
+  amazon:
+    path: "data/Amazon_Historical_StockPrice2.csv"
+  facebook:
+    path: "data/Facebook_Historical_StockPrice2.csv"
+  apple:
+    path: "data/Apple_Historical_StockPrice2.csv"
+  netflix:
+    path: "data/Netflix_Historical_StockPrice2.csv"

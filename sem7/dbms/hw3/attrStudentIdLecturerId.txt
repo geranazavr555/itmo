@@ -1,0 +1,3 @@
+StudentId, LecturerId
+StudentId, StudentName, LecturerId
+StudentId, StudentName, LecturerId, LecturerName

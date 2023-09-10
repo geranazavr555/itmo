@@ -1,0 +1,7 @@
+data:
+  path: "C:/Programing/sem5/da/lab1/data/users.pickle"
+
+sampling_frac: 0.05
+test_frac: 0.2
+random_state: 0
+min_completed: 20

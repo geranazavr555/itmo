@@ -1,0 +1,23 @@
+p{StudentName, CourseName}(
+    (
+        (
+            Students
+            nj
+            Plan
+            nj
+            Courses
+        )
+        lj
+        Marks
+    )
+    diff
+    (
+        Students
+        nj
+        Plan
+        nj
+        Courses
+        nj
+        s{Mark = 4 || Mark = 5}(Marks)
+    )
+)
