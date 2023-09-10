@@ -29,3 +29,9 @@
 [submodule "sem8/software-design/sdcourse-hw12"]
 	path = sem8/software-design/sdcourse-hw12
 	url = git@github.com:geranazavr555/sdcourse-hw12.git
+[submodule "bachelor-thesis/bachelor-project"]
+	path = bachelor-thesis/bachelor-project
+	url = git@github.com:geranazavr555/bachelor-project.git
+[submodule "bachelor-thesis/bachelors-thesis-materials"]
+	path = bachelor-thesis/bachelors-thesis-materials
+	url = git@github.com:geranazavr555/bachelors-thesis-materials.git
