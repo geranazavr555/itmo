@@ -35,3 +35,33 @@
 [submodule "bachelor-thesis/bachelors-thesis-materials"]
 	path = bachelor-thesis/bachelors-thesis-materials
 	url = git@github.com:geranazavr555/bachelors-thesis-materials.git
+[submodule "misc/formal-arithmetic-proof-checker"]
+	path = misc/formal-arithmetic-proof-checker
+	url = git@github.com:geranazavr555/formal-arithmetic-proof-checker.git
+[submodule "misc/linked_ptr"]
+	path = misc/linked_ptr
+	url = git@github.com:geranazavr555/linked_ptr.git
+[submodule "misc/unique_ptr"]
+	path = misc/unique_ptr
+	url = git@github.com:geranazavr555/unique_ptr.git
+[submodule "misc/function"]
+	path = misc/function
+	url = git@github.com:geranazavr555/function.git
+[submodule "misc/string-finder"]
+	path = misc/string-finder
+	url = git@github.com:geranazavr555/string-finder.git
+[submodule "misc/duplicate_scanner"]
+	path = misc/duplicate_scanner
+	url = git@github.com:geranazavr555/duplicate_scanner.git
+[submodule "misc/my_set"]
+	path = misc/my_set
+	url = git@github.com:geranazavr555/my_set.git
+[submodule "misc/optimized-big-integer"]
+	path = misc/optimized-big-integer
+	url = git@github.com:geranazavr555/optimized-big-integer.git
+[submodule "misc/huffman"]
+	path = misc/huffman
+	url = git@github.com:geranazavr555/huffman.git
+[submodule "misc/biginteger"]
+	path = misc/biginteger
+	url = git@github.com:geranazavr555/biginteger.git
